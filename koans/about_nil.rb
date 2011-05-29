@@ -22,9 +22,9 @@ class AboutNil < EdgeCase::Koan
   end
 
   def test_nil_has_a_few_methods_defined_on_it
-    assert_equal __, nil.nil?
-    assert_equal __, nil.to_s
-    assert_equal __, nil.inspect
+    assert_equal true, nil.nil?
+    assert_equal "", nil.to_s
+    assert_equal "nil", nil.inspect
 
     # THINK ABOUT IT:
     #
@@ -33,6 +33,12 @@ class AboutNil < EdgeCase::Koan
     # or
     #    obj == nil
     # Why?
+
+    # I think obj.nil? would be preferable. With Ruby, "duck-typing" is
+    # is one of the core strengths, and it is more idiomatic to check if
+    # an object responds to a particular method than to check type
+    # equality. Using this idiom, one could also extend the #nil? method
+    # to behave differently than simply comparing an object with nil.
   end
 
 end
