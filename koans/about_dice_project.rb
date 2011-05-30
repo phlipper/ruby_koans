@@ -4,20 +4,11 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 #
 class DiceSet
   DIE_SIDES = (1..6).to_a
-
-  def initialize
-    @dice = {}
-  end
+  attr_accessor :values
 
   def roll(number)
-    @dice.clear
-    1.upto(number) do |die|
-      @dice.update(die => DIE_SIDES.shuffle.first)
-    end
-  end
-
-  def values
-    @dice.values
+    @values = []
+    number.times { @values << DIE_SIDES.shuffle.first }
   end
 end
 
