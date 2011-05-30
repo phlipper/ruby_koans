@@ -14,20 +14,21 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  # sides must have a length greater than zero
-  raise TriangleError if [a, b, c].any? { |n| n <= 0 }
+  if [a, b, c].any? { |n| n < 1 }
+    raise TriangleError, "sides must have a length greater than zero"
+  end
 
-  # the sum of any two sides must be greater than the third
-  raise TriangleError if (a + b <= c) || (a + c <= b) || (b + c <= a)
+  if (a >= b + c) || (b >= a + c) || (c >= a + b)
+    raise TriangleError, "a side cannot be greater than the sum of the other two"
+  end
 
-  # all sides equal
-  return :equilateral if (a == b && b == c)
-
-  # two sides equal
-  return :isosceles   if (a == b || b == c || a == c)
-
-  # no sides equal
-  :scalene
+  if (a == b && b == c)  # all sides equal
+    :equilateral
+  elsif (a == b || b == c || a == c)  # two sides equal
+    :isosceles
+  else
+    :scalene  # no sides equal
+  end
 end
 
 # Error class used in part 2.  No need to change this code.
