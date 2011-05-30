@@ -92,12 +92,17 @@ EOS
     hi = original_string
     there = "World"
     hi << there
-    assert_equal __, original_string
+    assert_equal "Hello, World", original_string
 
     # THINK ABOUT IT:
     #
     # Ruby programmers tend to favor the shovel operator (<<) over the
     # plus equals operator (+=) when building up strings.  Why?
+
+    # The shovel operator can modify the original string several times
+    # without the need to use temporary variables. Since the original
+    # objects are updated, this also eliminates the creation of
+    # additional objects which can save memory and execution time.
   end
 
   def test_double_quoted_string_interpret_escape_characters
