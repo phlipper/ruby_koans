@@ -81,12 +81,12 @@ class AboutIteration < EdgeCase::Koan
   def test_all_iteration_methods_work_on_any_collection_not_just_arrays
     # Ranges act like a collection
     result = (1..3).map { |item| item + 10 }
-    assert_equal __, result
+    assert_equal [11, 12, 13], result
 
     # Files act like a collection of lines
     File.open("example_file.txt") do |file|
       upcase_lines = file.map { |line| line.strip.upcase }
-      assert_equal __, upcase_lines
+      assert_equal ["THIS", "IS", "A", "TEST"], upcase_lines
     end
 
     # NOTE: You can create your own collections that work with each,
@@ -106,4 +106,7 @@ class AboutIteration < EdgeCase::Koan
   #
   # When you get to the "AboutSandwichCode" koan, recheck your answer.
 
+  # Using the block syntax, the file handle will be closed automatically
+  # when the block exits. In the 2nd example, the file handle would need
+  # to be closed explicitly.
 end
