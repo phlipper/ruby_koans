@@ -80,10 +80,15 @@ class AboutConstants < EdgeCase::Koan
   end
 
   def test_who_wins_with_explicit_scoping_on_class_definition
-    assert_equal __, MyAnimals::Oyster.new.legs_in_oyster
+    assert_equal 4, MyAnimals::Oyster.new.legs_in_oyster
   end
 
   # QUESTION: Now which has precedence: The constant in the lexical
   # scope, or the constant from the inheritance hierarchy?  Why is it
   # different than the previous answer?
+
+  # TODO: research this more
+  # I believe this has to do with something along the lines of
+  # "MyAnimals::Oyster" itself is in the global scope and then the
+  # inheritance from "< Animal" wins out.
 end
