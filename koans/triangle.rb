@@ -14,8 +14,19 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
+  # sides must have a length greater than zero
+  raise TriangleError if [a, b, c].any? { |n| n <= 0 }
+
+  # the sum of any two sides must be greater than the third
+  raise TriangleError if (a + b <= c) || (a + c <= b) || (b + c <= a)
+
+  # all sides equal
   return :equilateral if (a == b && b == c)
+
+  # two sides equal
   return :isosceles   if (a == b || b == c || a == c)
+
+  # no sides equal
   :scalene
 end
 
