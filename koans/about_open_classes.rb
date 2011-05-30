@@ -9,7 +9,7 @@ class AboutOpenClasses < EdgeCase::Koan
 
   def test_as_defined_dogs_do_bark
     fido = Dog.new
-    assert_equal __, fido.bark
+    assert_equal "WOOF", fido.bark
   end
 
   # ------------------------------------------------------------------
@@ -41,5 +41,5 @@ class AboutOpenClasses < EdgeCase::Koan
   end
 
   # NOTE: To understand why we need the :: before Integer, you need to
-  # become enlightened about scope.  
+  # become enlightened about scope.
 end
