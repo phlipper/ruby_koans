@@ -138,14 +138,19 @@ class AboutRegularExpressions < EdgeCase::Koan
 
   def test_a_vertical_pipe_means_or
     grays = /(James|Dana|Summer) Gray/
-    assert_equal __, "James Gray"[grays]
-    assert_equal __, "Summer Gray"[grays, 1]
-    assert_equal __, "Jim Gray"[grays, 1]
+    assert_equal "James Gray", "James Gray"[grays]
+    assert_equal "Summer", "Summer Gray"[grays, 1]
+    assert_equal nil, "Jim Gray"[grays, 1]
   end
 
   # THINK ABOUT IT:
   #
   # Explain the difference between a character class ([...]) and alternation (|).
+
+  # A character class is a shorthand which can only result in a match for
+  # a single pattern. Alernation may match more than one pattern.
+  # Note: I'm not super happy with this explanation, but I'm comfortable
+  # that I "know what I mean" :)
 
   # ------------------------------------------------------------------
 
