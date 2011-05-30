@@ -35,6 +35,7 @@ def score(dice)
   sum = dice.inject(0) { |sum, n| sum += n }
 
   return 50 if 5 == sum
+  return 100 if 1 == sum
 end
 
 class AboutScoringProject < EdgeCase::Koan
