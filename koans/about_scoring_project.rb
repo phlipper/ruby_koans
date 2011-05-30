@@ -30,12 +30,36 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 # Your goal is to write the score method.
 
 def score(dice)
+  # default score
   return 0 if dice.empty?
 
-  sum = dice.inject(0) { |sum, n| sum += n }
+  # initialize score values
+  scores = (1..6).inject({}) { |score, die| score.update(die => 0) }
+  final_score = 0
 
-  return 50 if 5 == sum
-  return 100 if 1 == sum
+  # count each die value
+  dice.each { |die| scores[die] += 1 }
+
+  # find possible triplet values
+  scores.select{ |die, score| score >= 3 }.each do |die, score|
+    # * A set of three ones is 1000 points
+    # * A set of three numbers (other than ones) is worth 100 times the
+    #   number. (e.g. three fives is 500 points).
+    final_score += if 1 == die
+      1000
+    else
+      100 * die
+    end
+
+    scores[die] -= 3
+  end
+
+  # * A one (that is not part of a set of three) is worth 100 points.
+  # * A five (that is not part of a set of three) is worth 50 points.
+  # * Everything else is worth 0 points
+  final_score += (scores[1] * 100)
+  final_score += (scores[5] * 50)
+  final_score
 end
 
 class AboutScoringProject < EdgeCase::Koan
