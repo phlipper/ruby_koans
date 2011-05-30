@@ -24,11 +24,15 @@ class AboutHashes < EdgeCase::Koan
     hash = { :one => "uno", :two => "dos" }
     hash[:one] = "eins"
 
-    expected = { :one => __, :two => "dos" }
-    assert_equal __, expected == hash
+    expected = { :one => "eins", :two => "dos" }
+    assert_equal true, expected == hash
 
     # Bonus Question: Why was "expected" broken out into a variable
     # rather than used as a literal?
+
+    # I believe this is because we are modifying the initial value,
+    # and we are concerned about validating what the final value will
+    # look like.
   end
 
   def test_hash_is_unordered
