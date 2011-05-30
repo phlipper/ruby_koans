@@ -2,9 +2,24 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 # Implement a DiceSet Class here:
 #
-# class DiceSet
-#   code ...
-# end
+class DiceSet
+  DIE_SIDES = (1..6).to_a
+
+  def initialize
+    @dice = {}
+  end
+
+  def roll(number)
+    @dice.clear
+    (1..number).each do |die|
+      @dice.update(die => DIE_SIDES.shuffle.first)
+    end
+  end
+
+  def values
+    @dice.values
+  end
+end
 
 class AboutDiceProject < EdgeCase::Koan
   def test_can_create_a_dice_set
@@ -48,6 +63,10 @@ class AboutDiceProject < EdgeCase::Koan
     # If the rolls are random, then it is possible (although not
     # likely) that two consecutive rolls are equal.  What would be a
     # better way to test this.
+
+    # A better way to test this would be to test a large sample of rolls.
+    # Statistics could then be used to test deviations or other hypotheses
+    # to ensure the desired behavior.
   end
 
   def test_you_can_roll_different_numbers_of_dice
