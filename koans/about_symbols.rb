@@ -25,13 +25,24 @@ class AboutSymbols < EdgeCase::Koan
 
   def test_method_names_become_symbols
     symbols_as_strings = Symbol.all_symbols.map { |x| x.to_s }
-    assert_equal __, symbols_as_strings.include?("test_method_names_become_symbols")
+    assert_equal true, symbols_as_strings.include?("test_method_names_become_symbols")
   end
 
   # THINK ABOUT IT:
   #
   # Why do we convert the list of symbols to strings and then compare
   # against the string value rather than against symbols?
+
+  # If we simply compared symbols, we would not get an accurate answer.
+  #
+  # The following is always true -
+  #   :method == :method
+  # and the following is always false -
+  #   :method == "method"
+  #
+  # If you tried to convert the other way (string to symbol), you would
+  # end up 'polluting' the symbols and the comparison would also always
+  # be true.
 
   in_ruby_version("mri") do
     RubyConstant = "What is the sound of one hand clapping?"
