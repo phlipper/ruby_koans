@@ -102,10 +102,14 @@ class AboutSymbols < EdgeCase::Koan
   end
 
   def test_symbols_can_be_dynamically_created
-    assert_equal __, ("cats" + "dogs").to_sym
+    assert_equal :catsdogs, ("cats" + "dogs").to_sym
   end
 
   # THINK ABOUT IT:
   #
   # Why is it not a good idea to dynamically create a lot of symbols?
+
+  # Symbols exist in memory only once, and are not freed if they are in
+  # use. If many objects are dynamically created, a lot of memory will
+  # be used and not freed.
 end
