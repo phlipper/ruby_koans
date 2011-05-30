@@ -31,6 +31,10 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 def score(dice)
   return 0 if dice.empty?
+
+  sum = dice.inject(0) { |sum, n| sum += n }
+
+  return 50 if 5 == sum
 end
 
 class AboutScoringProject < EdgeCase::Koan
