@@ -11,7 +11,7 @@ class DiceSet
 
   def roll(number)
     @dice.clear
-    (1..number).each do |die|
+    1.upto(number) do |die|
       @dice.update(die => DIE_SIDES.shuffle.first)
     end
   end
