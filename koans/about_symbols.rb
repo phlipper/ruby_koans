@@ -96,7 +96,7 @@ class AboutSymbols < EdgeCase::Koan
 
   def test_symbols_cannot_be_concatenated
     # Exceptions will be pondered further farther down the path
-    assert_raise(___) do
+    assert_raise(NoMethodError) do
       :cats + :dogs
     end
   end
